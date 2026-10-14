@@ -16,3 +16,6 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Local task briefs and reference documentation
+Tasks/
