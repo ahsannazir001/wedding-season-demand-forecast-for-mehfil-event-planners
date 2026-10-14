@@ -118,3 +118,40 @@ during subsequent tasks.
 - Cleaned CSV containing 36 monthly records
 - Dataset verification script
 - README documentation
+
+
+## Task 2: Baseline Forecast
+
+### Model
+
+A Linear Regression model from scikit-learn was trained to predict
+monthly wedding bookings using a chronological time index.
+
+### Train/Test Split
+
+- Training records: 28
+- Testing records: 8
+- Test period: May 2025 to December 2025
+
+The latest 8 months were reserved for testing to preserve chronological
+order.
+
+### Evaluation
+
+The model was evaluated using Mean Absolute Error (MAE).
+
+- **MAE: 6.4407 bookings**
+
+MAE represents the average absolute difference between actual and
+predicted booking counts on the test data.
+
+### Outputs
+
+- `reports/baseline_metrics.txt` — evaluation metrics and test period.
+- `plots/actual_vs_predicted.png` — actual versus predicted bookings plot.
+
+### Limitations
+
+The dataset contains synthetic sample data, and the baseline model uses
+only a linear time trend. The evaluation is intended as a learning
+benchmark, not a guarantee of real-world forecasting accuracy.
