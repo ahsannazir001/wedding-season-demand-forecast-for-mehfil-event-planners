@@ -1,0 +1,9 @@
+Wedding Season Demand Forecast — Baseline Evaluation
+Model: Linear Regression
+Feature: time_index
+Training rows: 28
+Testing rows: 8
+Test period: May 2025 to December 2025
+Mean Absolute Error (MAE): 6.4407 bookings
+
+Note: The dataset is synthetic; this result is a learning baseline.
