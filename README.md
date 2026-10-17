@@ -155,38 +155,41 @@ predicted booking counts on the test data.
 The dataset contains synthetic sample data, and the baseline model uses
 only a linear time trend. The evaluation is intended as a learning
 benchmark, not a guarantee of real-world forecasting accuracy.
-## Task 3: Improve Model with Feature Engineering
+### Task 3: Feature Engineering and Model Comparison
 
-### Objective
-The goal of this task was to improve the baseline forecasting model by adding time-based features and evaluating the model using chronological cross-validation.
+**Objective:** Improve the baseline wedding-booking demand forecasting model by adding calendar-based features and evaluating performance using time-series cross-validation.
 
-### Features Added
-- `month_number`: Represents months from 1 to 12.
-- `is_peak_season`: Indicates whether a month is part of the assumed summer peak season (June, July, and August).
-- `year_offset`: Represents the number of years since the first year in the dataset.
-- `time_index`: Preserved from the baseline model to represent chronological order.
+#### Features Added
 
-### Model and Evaluation
-A Linear Regression model was retrained using the engineered features. The latest 8 months (May–December 2025) were kept as the test set.
+- `time_index`: Number of months since the first observation, representing the passage of time.
+- `month_number`: Month number from 1 to 12.
+- `is_peak_season`: Binary indicator for June, July, and August. These months are assumed to represent the peak summer season for this learning project.
+- `year_offset`: Number of years since the first year in the dataset.
 
-| Metric | Baseline | Improved Model |
+#### Evaluation Method
+
+Both models use the same chronological split: the first 28 observations for training and the final 8 observations (May–December 2025) for testing. Four-fold `TimeSeriesSplit` cross-validation is also used on the training data.
+
+#### Model Comparison
+
+| Metric | Baseline Model | Improved Model |
 |---|---:|---:|
+| Features | `time_index` | `time_index`, `month_number`, `is_peak_season`, `year_offset` |
 | Test MAE | 6.4407 | 3.9635 |
+| Mean Cross-Validation MAE | 9.6458 | 9.9007 |
 
-The improved model reduced test MAE by approximately 38.5%.
+The improved model's test MAE is approximately **38.5% lower** than the baseline model's test MAE on the same test period.
 
-### Cross-Validation
-TimeSeriesSplit with 4 folds was used on the training data.
+However, the improved model's mean cross-validation MAE is slightly higher than the baseline's. This means the improvement on the final test period does not establish that the improved model will generalize better across different time periods.
 
-- Fold MAE scores: 20.2000, 6.7628, 4.7975, 7.8427
-- Mean cross-validation MAE: 9.9007 bookings
+#### Generated Outputs
 
-Cross-validation results vary across time periods, so further evaluation is needed.
+- `src/train_improved.py`: Feature-engineered model training and evaluation.
+- `src/compare_models.py`: Fair comparison of baseline and improved models using the same chronological test period and cross-validation splits.
+- `reports/improved_metrics.txt`: Improved model metrics.
+- `reports/model_comparison.csv`: Side-by-side model comparison and cross-validation results.
+- `plots/improved_actual_vs_predicted.png`: Plot comparing actual and predicted bookings for the improved model.
 
-### Output Files
-- `src/train_improved.py` — Feature engineering, model training, and evaluation.
-- `reports/improved_metrics.txt` — Test and cross-validation results.
-- `plots/improved_actual_vs_predicted.png` — Actual versus predicted bookings.
+#### Limitations
 
-### Limitations
-The dataset is synthetic, and the peak-season months are an assumption. The results are for learning purposes and do not guarantee real-world forecasting accuracy.
+The dataset is synthetic and contains only 36 monthly observations. The peak-season months are an assumption, not a confirmed business rule. The results are intended for learning and should be validated on real booking data before practical business use.
