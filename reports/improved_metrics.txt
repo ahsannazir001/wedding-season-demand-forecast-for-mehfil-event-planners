@@ -1,0 +1,12 @@
+Wedding Season Demand Forecast - Feature Engineering
+Model: Linear Regression
+Features: time_index, month_number, is_peak_season, year_offset
+Training rows: 28
+Testing rows: 8
+Test period: May 2025 to December 2025
+Test MAE: 3.9635 bookings
+TimeSeriesSplit folds: 4
+Cross-validation MAE scores: 20.2000, 6.7628, 4.7975, 7.8427
+Mean cross-validation MAE: 9.9007 bookings
+Peak season assumption: June, July, August
+Note: Dataset is synthetic; results are for learning.
