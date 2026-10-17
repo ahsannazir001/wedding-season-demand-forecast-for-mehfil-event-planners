@@ -155,3 +155,38 @@ predicted booking counts on the test data.
 The dataset contains synthetic sample data, and the baseline model uses
 only a linear time trend. The evaluation is intended as a learning
 benchmark, not a guarantee of real-world forecasting accuracy.
+## Task 3: Improve Model with Feature Engineering
+
+### Objective
+The goal of this task was to improve the baseline forecasting model by adding time-based features and evaluating the model using chronological cross-validation.
+
+### Features Added
+- `month_number`: Represents months from 1 to 12.
+- `is_peak_season`: Indicates whether a month is part of the assumed summer peak season (June, July, and August).
+- `year_offset`: Represents the number of years since the first year in the dataset.
+- `time_index`: Preserved from the baseline model to represent chronological order.
+
+### Model and Evaluation
+A Linear Regression model was retrained using the engineered features. The latest 8 months (May–December 2025) were kept as the test set.
+
+| Metric | Baseline | Improved Model |
+|---|---:|---:|
+| Test MAE | 6.4407 | 3.9635 |
+
+The improved model reduced test MAE by approximately 38.5%.
+
+### Cross-Validation
+TimeSeriesSplit with 4 folds was used on the training data.
+
+- Fold MAE scores: 20.2000, 6.7628, 4.7975, 7.8427
+- Mean cross-validation MAE: 9.9007 bookings
+
+Cross-validation results vary across time periods, so further evaluation is needed.
+
+### Output Files
+- `src/train_improved.py` — Feature engineering, model training, and evaluation.
+- `reports/improved_metrics.txt` — Test and cross-validation results.
+- `plots/improved_actual_vs_predicted.png` — Actual versus predicted bookings.
+
+### Limitations
+The dataset is synthetic, and the peak-season months are an assumption. The results are for learning purposes and do not guarantee real-world forecasting accuracy.
