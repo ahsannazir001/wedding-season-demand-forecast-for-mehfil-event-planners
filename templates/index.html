@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Demand Forecast | Mehfil Event Planners</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            color: #243047;
+        }
+
+        header {
+            background: #243b64;
+            color: white;
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 0;
+            color: #e0e8f6;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 18px;
+        }
+
+        .summary {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .summary h2 {
+            margin-top: 0;
+            color: #243b64;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #e6eaf1;
+        }
+
+        th {
+            background: #e9eef8;
+            color: #243b64;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .number {
+            font-weight: bold;
+            color: #176b50;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            color: #68758b;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 23px;
+            }
+
+            th, td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Wedding Demand Forecast</h1>
+        <p>Mehfil Event Planners</p>
+    </header>
+
+    <main>
+        <section class="summary">
+            <h2>Next 6 Months</h2>
+            <p>
+                Estimated monthly wedding bookings based on historical
+                booking data and the trained machine learning model.
+            </p>
+        </section>
+
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Predicted Bookings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in forecasts %}
+                    <tr>
+                        <td>{{ item.month }}</td>
+                        <td>{{ item.year }}</td>
+                        <td class="number">{{ item.predicted_bookings }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        Forecasts are estimates, not guaranteed booking counts.
+        Model trained on synthetic data for demonstration.
+    </footer>
+</body>
+</html>
