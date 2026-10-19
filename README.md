@@ -193,3 +193,87 @@ However, the improved model's mean cross-validation MAE is slightly higher than 
 #### Limitations
 
 The dataset is synthetic and contains only 36 monthly observations. The peak-season months are an assumption, not a confirmed business rule. The results are intended for learning and should be validated on real booking data before practical business use.
+## Task 4: Deploy a Web App for Wedding Demand Forecasts
+
+### Project Overview
+
+This task extends the wedding booking demand forecasting project by developing a web application using Flask. The application loads the trained feature-engineered Linear Regression model and generates forecasts for the next six months for Mehfil Event Planners.
+
+### Features
+
+- **Six-Month Forecasting:** Displays predicted wedding bookings for the next six months.
+- **Trained ML Model:** Uses the improved Linear Regression model trained on all available historical data.
+- **Feature Engineering:** Uses `time_index`, `month_number`, `is_peak_season`, and `year_offset`.
+- **Web Interface:** Displays forecast results in a simple, responsive HTML table.
+- **Automatic Forecast Dates:** Calculates the next six months based on the current date.
+- **Non-Negative Predictions:** Prevents negative forecast values and rounds predictions to whole bookings.
+
+### Technologies Used
+
+- Python
+- Flask
+- Pandas
+- NumPy
+- Scikit-learn
+- Joblib
+- HTML and CSS
+- Gunicorn (for production deployment)
+
+### Project Structure
+
+```text
+wedding-season-demand-forecast-for-mehfil-event-planners/
+├── app.py
+├── requirements.txt
+├── models/
+│   └── improved_model.joblib
+├── data/
+│   └── processed/
+│       └── wedding_bookings.csv
+├── src/
+│   ├── train_improved.py
+│   └── save_model.py
+└── templates/
+    └── index.html
+```
+
+### Run the Application Locally
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/ahsannazir001/wedding-season-demand-forecast-for-mehfil-event-planners.git
+```
+
+**2. Navigate to the project directory**
+
+```bash
+cd wedding-season-demand-forecast-for-mehfil-event-planners
+```
+
+**3. Create and activate a virtual environment**
+
+On Windows PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+**4. Install dependencies**
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+**5. Start the Flask application**
+
+```bash
+python app.py
+```
+
+**6. Open the application**
+
+Visit the following address in your browser:
+
+```
