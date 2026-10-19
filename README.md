@@ -274,6 +274,8 @@ python app.py
 
 **6. Open the application**
 
-Visit the following address in your browser:
+**Live Application:** [Wedding Demand Forecast — Mehfil Event Planners](https://wedding-season-demand-forecast-for.onrender.com/)
+
+The application is deployed on Render and displays predicted wedding bookings for the next six months.
 
 ```
